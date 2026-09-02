@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why STEMathon?</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --bg: #f5f5f0;
+            --ink: #111;
+            --muted: #666;
+            --card: #ffffff;
+            --line: #d8d8d2;
+            --accent: #ff5a36;
+            --blue: #4267ff;
+            --green: #22a06b;
+            --yellow: #f4c542;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--ink);
+            color: white;
+        }
+
+        /* ---------- NAV ---------- */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            padding: 0 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(18px);
+            background: rgba(245, 245, 240, .78);
+            border-bottom: 1px solid rgba(0, 0, 0, .08);
+        }
+
+        .logo {
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-right a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-button {
+            background: var(--ink);
+            color: white !important;
+            padding: 11px 18px;
+            border-radius: 100px;
+        }
+
+        /* ---------- GENERAL ---------- */
+
+        section {
+            min-height: 100vh;
+            padding: 130px 7vw;
+            position: relative;
+        }
+
+        .eyebrow {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(55px, 9vw, 145px);
+            line-height: .88;
+            letter-spacing: -7px;
+            font-weight: 900;
+        }
+
+        h2 {
+            font-size: clamp(45px, 6vw, 90px);
+            line-height: .92;
+            letter-spacing: -4px;
+            margin-bottom: 35px;
+        }
+
+        h3 {
+            font-size: 25px;
+            letter-spacing: -1px;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .big-number {
+            font-size: clamp(100px, 17vw, 250px);
+            font-weight: 900;
+            letter-spacing: -15px;
+            line-height: .8;
+        }
+
+        /* ---------- HERO ---------- */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, .045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, .045) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to bottom, black, transparent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            margin-top: 40px;
+            max-width: 650px;
+            font-size: 20px;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 35px;
+            left: 7vw;
+            font-family: "DM Mono";
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .floating-orb {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            right: 5vw;
+            top: 25%;
+            background: var(--accent);
+            opacity: .95;
+            filter: blur(0);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-orb::after {
+            content: "YES";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 80px;
+            font-weight: 900;
+            color: white;
+            transform: rotate(-12deg);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(7deg);
+            }
+        }
+
+        /* ---------- THE REAL QUESTION ---------- */
+
+        .question {
+            background: var(--ink);
+            color: white;
+        }
+
+        .question p {
+            color: #aaa;
+        }
+
+        .question h2 {
+            max-width: 1000px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: stretch;
+            margin-top: 70px;
+            max-width: 1000px;
+        }
+
+        .choice-box {
+            flex: 1;
+            padding: 45px;
+            border: 1px solid #444;
+            transition: .4s;
+        }
+
+        .choice-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .choice-box:first-child {
+            border-radius: 25px 0 0 25px;
+        }
+
+        .choice-box:last-child {
+            border-radius: 0 25px 25px 0;
+        }
+
+        .choice-box .icon {
+            font-size: 45px;
+            margin-bottom: 25px;
+        }
+
+        .choice-vs {
+            display: grid;
+            place-items: center;
+            padding: 0 20px;
+            font-family: "DM Mono";
+            color: #777;
+        }
+
+        /* ---------- BOTH ---------- */
+
+        .both {
+            background: var(--yellow);
+        }
+
+        .both h2 {
+            max-width: 900px;
+        }
+
+        .both-diagram {
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+
+        .node {
+            width: 240px;
+            height: 180px;
+            background: white;
+            border: 3px solid black;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 8px 8px 0 #111;
+            transition: .3s;
+        }
+
+        .node:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 11px 11px 0 #111;
+        }
+
+        .node-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .connector {
+            width: 100px;
+            height: 3px;
+            background: black;
+            position: relative;
+        }
+
+        .connector::after {
+            content: "→";
+            position: absolute;
+            right: -8px;
+            top: -17px;
+            font-size: 30px;
+        }
+
+        /* ---------- ADMISSIONS ---------- */
+
+        .admissions {
+            background: white;
+        }
+
+        .admissions-intro {
+            max-width: 800px;
+        }
+
+        .admissions-game {
+            margin-top: 70px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .student-card {
+            border: 2px solid #111;
+            border-radius: 30px;
+            padding: 35px;
+            min-height: 450px;
+            transition: .5s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .student-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+        }
+
+        .student-label {
+            font-family: "DM Mono";
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .student-title {
+            font-size: 50px;
+            font-weight: 900;
+            letter-spacing: -3px;
+        }
+
+        .profile-list {
+            list-style: none;
+            margin-top: 35px;
+        }
+
+        .profile-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-list li::before {
+            content: "✓";
+            margin-right: 12px;
+            font-weight: 900;
+        }
+
+        .verdict {
+            position: absolute;
+            bottom: 30px;
+            left: 35px;
+            right: 35px;
+            padding: 18px;
+            border-radius: 15px;
+            background: #f2f2ed;
+            font-weight: 700;
+        }
+
+        .student-b .verdict {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* ---------- PROFILE ---------- */
+
+        .profile {
+            background: #e9e9e3;
+        }
+
+        .profile-path {
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+        }
+
+        .profile-stage {
+            min-width: 220px;
+            min-height: 220px;
+            padding: 30px;
+            background: white;
+            border-radius: 25px;
+            border: 1px solid #ccc;
+        }
+
+        .profile-stage strong {
+            font-size: 45px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .profile-arrow {
+            font-size: 35px;
+        }
+
+        /* ---------- CS ---------- */
+
+        .cs {
+            background: #111;
+            color: white;
+        }
+
+        .cs p {
+            color: #999;
+        }
+
+        .cs-diagram {
+            margin-top: 70px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .cs-pill {
+            padding: 25px 35px;
+            border: 1px solid #444;
+            border-radius: 100px;
+            font-size: 20px;
+            transition: .3s;
+        }
+
+        .cs-pill:hover {
+            background: white;
+            color: black;
+            transform: scale(1.06);
+        }
+
+        /* ---------- STEMATHON ---------- */
+
+        .stemathon {
+            background: var(--accent);
+            color: white;
+        }
+
+        .stemathon p {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        .stem-flow {
+            margin-top: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flow-item {
+            width: min(700px, 90%);
+            padding: 28px;
+            border: 2px solid white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            font-size: 20px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .flow-item:hover {
+            background: white;
+            color: var(--accent);
+            transform: scale(1.03);
+        }
+
+        .flow-icon {
+            font-size: 35px;
+        }
+
+        .flow-line {
+            height: 45px;
+            width: 2px;
+            background: white;
+        }
+
+        /* ---------- RISK ---------- */
+
+        .risk {
+            background: #f1f1ec;
+        }
+
+        .risk-box {
+            max-width: 1000px;
+            margin-top: 70px;
+        }
+
+        .risk-slider {
+            position: relative;
+            height: 12px;
+            background: #ddd;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+
+        .risk-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 20px;
+        }
+
+        .risk-dot {
+            position: absolute;
+            left: 32%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 5px solid white;
+            box-shadow: 0 0 0 2px #111;
+        }
+
+        .risk-labels {
+            display: flex;
+            justify-content: space-between;
+            font-family: "DM Mono";
+            font-size: 12px;
+        }
+
+        .warning {
+            margin-top: 50px;
+            padding: 35px;
+            border: 2px solid #111;
+            border-radius: 25px;
+            background: white;
+        }
+
+        .warning strong {
+            font-size: 25px;
+        }
+
+        /* ---------- CONTRACT ---------- */
+
+        .contract {
+            background: var(--green);
+            color: white;
+        }
+
+        .contract p {
+            color: rgba(255, 255, 255, .82);
+        }
+
+        .contract-list {
+            margin-top: 70px;
+            max-width: 900px;
+        }
+
+        .contract-item {
+            display: flex;
+            gap: 25px;
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .35);
+        }
+
+        .check {
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            font-weight: 900;
+        }
+
+        /* ---------- FUTURE ---------- */
+
+        .future {
+            background: white;
+        }
+
+        .timeline {
+            margin-top: 80px;
+            position: relative;
+            max-width: 1000px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #111;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 55px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-weight: 900;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            padding-top: 10px;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 8px;
+        }
+
+        /* ---------- U OF T ---------- */
+
+        .uoft {
+            background: #e6e8ff;
+        }
+
+        .uoft-card {
+            margin-top: 70px;
+            max-width: 900px;
+            padding: 50px;
+            border-radius: 35px;
+            background: white;
+            border: 2px solid #111;
+            box-shadow: 12px 12px 0 #111;
+        }
+
+        .uoft-card .big-quote {
+            font-size: clamp(30px, 4vw, 55px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+
+        .uoft-card p {
+            margin-top: 30px;
+        }
+
+        /* ---------- IRREPLACEABLE ---------- */
+
+        .irreplaceable {
+            background: #111;
+            color: white;
+            text-align: center;
+        }
+
+        .irreplaceable h2 {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .irreplaceable p {
+            max-width: 650px;
+            margin: 35px auto;
+        }
+
+        .counter {
+            margin-top: 80px;
+        }
+
+        .counter-number {
+            font-size: clamp(100px, 20vw, 300px);
+            font-weight: 900;
+            line-height: .7;
+            letter-spacing: -15px;
+        }
+
+        .counter-caption {
+            font-family: "DM Mono";
+            margin-top: 50px;
+            color: #888;
+        }
+
+        /* ---------- FINAL ---------- */
+
+        .final {
+            min-height: 100vh;
+            background: var(--yellow);
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .final-inner {
+            max-width: 1100px;
+        }
+
+        .final h2 {
+            font-size: clamp(55px, 9vw, 130px);
+        }
+
+        .final-line {
+            width: 120px;
+            height: 6px;
+            background: #111;
+            margin: 50px auto;
+        }
+
+        .final p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        .final-button {
+            display: inline-block;
+            margin-top: 50px;
+            padding: 20px 35px;
+            background: #111;
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            transition: .3s;
+        }
+
+        .final-button:hover {
+            transform: scale(1.07);
+        }
+
+        /* ---------- FOOTER ---------- */
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 50px 7vw;
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* ---------- REVEAL ---------- */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- MOBILE ---------- */
+
+        @media(max-width: 800px) {
+
+            nav {
+                height: 60px;
+            }
+
+            .nav-right a:not(.nav-button) {
+                display: none;
+            }
+
+            section {
+                padding: 100px 6vw;
+            }
+
+            h1 {
+                letter-spacing: -4px;
+            }
+
+            h2 {
+                letter-spacing: -2px;
+            }
+
+            .floating-orb {
+                width: 220px;
+                height: 220px;
+                right: -70px;
+                top: 55%;
+            }
+
+            .floating-orb::after {
+                font-size: 45px;
+            }
+
+            .choice {
+                flex-direction: column;
+            }
+
+            .choice-box:first-child,
+            .choice-box:last-child {
+                border-radius: 25px;
+            }
+
+            .choice-vs {
+                padding: 15px;
+            }
+
+            .admissions-game {
+                grid-template-columns: 1fr;
+            }
+
+            .both-diagram {
+                flex-direction: column;
+            }
+
+            .connector {
+                width: 3px;
+                height: 60px;
+            }
+
+            .connector::after {
+                transform: rotate(90deg);
+                right: -13px;
+                top: 42px;
+            }
+
+            .uoft-card {
+                padding: 30px;
+                box-shadow: 7px 7px 0 #111;
+            }
+
+            footer {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">STEMATHON<span>?</span></div>
+
+        <div class="nav-right">
+            <a href="#question">The Question</a>
+            <a href="#risk">The Risk</a>
+            <a href="#future">The Future</a>
+            <a href="#final" class="nav-button">The Case →</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-grid"></div>
+
+        <div class="hero-content reveal">
+
+            <div class="eyebrow">A case for saying yes</div>
+
+            <h1>
+                WAIT.<br>
+                DON'T GIVE<br>
+                UP THE <span>STEMATHON.</span>
+            </h1>
+
+            <p class="hero-sub">
+                A Grade 10 student. An exceptional academic record.
+                A national STEM opportunity. One awkward November weekend.
+                Let's actually think this through.
+            </p>
+
+        </div>
+
+        <div class="floating-orb"></div>
+
+        <div class="hero-scroll">
+            ↓ Scroll to investigate
+        </div>
+
+    </section>
+
+
+    <!-- QUESTION -->
+    <section class="question" id="question">
+
+        <div class="eyebrow reveal">01 — The obvious question</div>
+
+        <h2 class="reveal">
+            Are we really choosing<br>
+            a competition over school?
+        </h2>
+
+        <p class="reveal" style="max-width:700px;">
+            No. And that distinction changes the entire argument.
+        </p>
+
+        <div class="choice reveal">
+
+            <div class="choice-box">
+                <div class="icon">📚</div>
+                <h3>School</h3>
+                <p style="margin-top:15px;">
+                    Mid-term exams begin November 19.
+                    Academic performance remains important.
+                    The exam still needs to happen.
+                </p>
+            </div>
+
+            <div class="choice-vs">VS</div>
+
+            <div class="choice-box">
+                <div class="icon">🚀</div>
+                <h3>STEMathon</h3>
+                <p style="margin-top:15px;">
+                    Imperial College London's national STEM competition,
+                    culminating in a Mumbai finale on November 21–22.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOTH -->
+    <section class="both">
+
+        <div class="eyebrow reveal">02 — The important bit</div>
+
+        <h2 class="reveal">
+            The choice isn't<br>
+            actually either/or.
+        </h2>
+
+        <p class="reveal" style="max-width:650px;">
+            The school has agreed that the missed exam can be rescheduled
+            because the student is representing the school.
+        </p>
+
+        <div class="both-diagram reveal">
+
+            <div class="node">
+                <div class="node-icon">📚</div>
+                <strong>Prepare</strong>
+                <small>Study for the exam</small>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="node">
+                <div class="node-icon">🚀</div>
+                <strong>Compete</strong>
+                <small>Represent the school</small>
+            </div>
+
+            <div class="connector"></div>
+
+            <div class="node">
+                <div class="node-icon">📝</div>
+                <strong>Reschedule</strong>
+                <small>Take the exam properly</small>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMISSIONS -->
+    <section class="admissions">
+
+        <div class="eyebrow reveal">03 — Let's play admissions officer</div>
+
+        <div class="admissions-intro reveal">
+
+            <h2>
+                Imagine it's<br>
+                2029.
+            </h2>
+
+            <p>
+                Two students apply for Computer Science.
+                Both are excellent academically.
+                Both clearly have the ability to succeed.
+            </p>
+
+        </div>
+
+        <div class="admissions-game">
+
+            <div class="student-card student-a reveal">
+
+                <div class="student-label">STUDENT A</div>
+
+                <div class="student-title">
+                    Excellent.
+                </div>
+
+                <ul class="profile-list">
+                    <li>Strong academic record</li>
+                    <li>Strong mathematics</li>
+                    <li>Strong science</li>
+                    <li>Normal school activities</li>
+                    <li>Clearly capable</li>
+                </ul>
+
+                <div class="verdict">
+                    "Very strong student."
+                </div>
+
+            </div>
+
+
+            <div class="student-card student-b reveal">
+
+                <div class="student-label">STUDENT B</div>
+
+                <div class="student-title">
+                    Excellent +
+                </div>
+
+                <ul class="profile-list">
+                    <li>Strong academic record</li>
+                    <li>Imperial STEMathon</li>
+                    <li>National-level finale</li>
+                    <li>Real STEM problem solving</li>
+                    <li>Teamwork + pitching</li>
+                    <li>School representation</li>
+                </ul>
+
+                <div class="verdict">
+                    "There's a story here."
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CS -->
+    <section class="cs">
+
+        <div class="eyebrow reveal">04 — Especially for CS</div>
+
+        <h2 class="reveal">
+            Computer Science<br>
+            isn't just knowing things.
+        </h2>
+
+        <p class="reveal" style="max-width:650px;">
+            It's knowing how to attack problems you've never seen before.
+        </p>
+
+        <div class="cs-diagram reveal">
+
+            <div class="cs-pill">💡 Ideation</div>
+            <div class="cs-pill">🔍 Research</div>
+            <div class="cs-pill">🧠 Problem Solving</div>
+            <div class="cs-pill">💻 Building</div>
+            <div class="cs-pill">🔄 Iteration</div>
+            <div class="cs-pill">🧪 Testing</div>
+            <div class="cs-pill">🎤 Pitching</div>
+            <div class="cs-pill">🤝 Teamwork</div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STEMATHON -->
+    <section class="stemathon">
+
+        <div class="eyebrow reveal" style="color:white;">
+            05 — What actually happens
+        </div>
+
+        <h2 class="reveal">
+            This isn't<br>
+            another certificate.
+        </h2>
+
+        <p class="reveal" style="max-width:650px;">
+            STEMathon asks students to design solutions to global challenges,
+            collaborate, build their ideas and present them.
+        </p>
+
+        <div class="stem-flow reveal">
+
+            <div class="flow-item">
+                <div class="flow-icon">🌍</div>
+                <div>Choose a real-world challenge</div>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-item">
+                <div class="flow-icon">💡</div>
+                <div>Develop an original solution</div>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-item">
+                <div class="flow-icon">🛠️</div>
+                <div>Build + iterate</div>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-item">
+                <div class="flow-icon">🧑‍🔬</div>
+                <div>Work with an Imperial PhD mentor</div>
+            </div>
+
+            <div class="flow-line"></div>
+
+            <div class="flow-item">
+                <div class="flow-icon">🎤</div>
+                <div>Present at the Mumbai finale</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RISK -->
+    <section class="risk" id="risk">
+
+        <div class="eyebrow reveal">06 — The uncomfortable bit</div>
+
+        <h2 class="reveal">
+            "But what if<br>
+            his grades drop?"
+        </h2>
+
+        <p class="reveal" style="max-width:700px;">
+            That's a legitimate concern.
+            But let's distinguish a possibility from a prediction.
+        </p>
+
+        <div class="risk-box reveal">
+
+            <div class="risk-slider">
+                <div class="risk-fill"></div>
+                <div class="risk-dot"></div>
+            </div>
+
+            <div class="risk-labels">
+                <span>NO EXTRA PRESSURE</span>
+                <span>MANAGEABLE</span>
+                <span>HIGH PRESSURE</span>
+            </div>
+
+            <div class="warning">
+
+                <strong>
+                    ⚠️ Important:
+                </strong>
+
+                <p style="margin-top:12px;">
+                    A grade drop is <b>not confirmed</b>.
+                    It is simply a possible worst-case scenario
+                    if preparation isn't managed properly.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTRACT -->
+    <section class="contract">
+
+        <div class="eyebrow reveal" style="color:white;">
+            07 — Don't ask for trust. Build safeguards.
+        </div>
+
+        <h2 class="reveal">
+            The STEMATHON<br>
+            CONTRACT.
+        </h2>
+
+        <p class="reveal" style="max-width:700px;">
+            Going doesn't mean getting a free pass.
+            It means accepting responsibility.
+        </p>
+
+        <div class="contract-list">
+
+            <div class="contract-item reveal">
+                <div class="check">✓</div>
+                <div>
+                    <h3>Prepare early</h3>
+                    <p>Assignments, revision and practice papers should be handled before the event.</p>
+                </div>
+            </div>
+
+            <div class="contract-item reveal">
+                <div class="check">✓</div>
+                <div>
+                    <h3>Protect the exam</h3>
+                    <p>The rescheduled exam receives serious preparation. STEMathon is never an excuse.</p>
+                </div>
+            </div>
+
+            <div class="contract-item reveal">
+                <div class="check">✓</div>
+                <div>
+                    <h3>Accept accountability</h3>
+                    <p>If preparation starts slipping, parents step in.</p>
+                </div>
+            </div>
+
+            <div class="contract-item reveal">
+                <div class="check">✓</div>
+                <div>
+                    <h3>Earn the opportunity</h3>
+                    <p>The student doesn't ask for less responsibility. He agrees to more.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FUTURE -->
+    <section class="future" id="future">
+
+        <div class="eyebrow reveal">08 — The bigger picture</div>
+
+        <h2 class="reveal">
+            This isn't about<br>
+            one weekend.
+        </h2>
+
+        <p class="reveal" style="max-width:650px;">
+            It's about what kind of student is being built over the next three years.
+        </p>
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot">10</div>
+
+                <div class="timeline-content">
+
+                    <h3>GRADE 10</h3>
+
+                    <p>
+                        Strong academics + first serious national STEM experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot">11</div>
+
+                <div class="timeline-content">
+
+                    <h3>GRADE 11</h3>
+
+                    <p>
+                        Deeper CS. Bigger projects. More ambitious competitions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot">12</div>
+
+                <div class="timeline-content">
+
+                    <h3>GRADE 12</h3>
+
+                    <p>
+                        Strong academic record + meaningful body of work +
+                        clearly demonstrated interests.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-dot">🎓</div>
+
+                <div class="timeline-content">
+
+                    <h3>UNIVERSITY</h3>
+
+                    <p>
+                        The application tells a coherent story:
+                        not just "I got good marks," but "I built, explored,
+                        solved and challenged myself."
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- U OF T -->
+    <section class="uoft">
+
+        <div class="eyebrow reveal">09 — The long game</div>
+
+        <h2 class="reveal">
+            University of<br>
+            Toronto.
+        </h2>
+
+        <div class="uoft-card reveal">
+
+            <div class="big-quote">
+                Academics get you into the conversation.
+                Experiences help tell the story.
+            </div>
+
+            <p>
+                U of T's Computer Science admissions still place major importance
+                on academic performance. But some CS programs also use supplemental
+                applications to understand experiences and interests beyond the transcript.
+            </p>
+
+            <p>
+                So the goal isn't to replace grades with extracurriculars.
+                The goal is to build both.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- IRREPLACEABLE -->
+    <section class="irreplaceable">
+
+        <div class="eyebrow reveal" style="color:var(--accent);">
+            10 — Opportunity cost
+        </div>
+
+        <h2 class="reveal">
+            What happens<br>
+            if we say no?
+        </h2>
+
+        <p class="reveal">
+            Nothing catastrophic. He can still succeed.
+            But this particular opportunity disappears.
+        </p>
+
+        <div class="counter reveal">
+
+            <div class="counter-number" id="days">0</div>
+
+            <div class="counter-caption">
+                DAYS UNTIL THE OPPORTUNITY IS GONE
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL -->
+    <section class="final" id="final">
+
+        <div class="final-inner reveal">
+
+            <div class="eyebrow">
+                The case
+            </div>
+
+            <h2>
+                DON'T<br>
+                STUDY LESS.
+            </h2>
+
+            <div class="final-line"></div>
+
+            <h2>
+                BECOME<br>
+                CAPABLE OF MORE.
+            </h2>
+
+            <p style="margin-top:45px;">
+                We're not asking him to choose STEMathon instead of academics.
+                We're asking him to take a rare opportunity while the school
+                has already agreed to protect his academic responsibility.
+            </p>
+
+            <a href="#question" class="final-button">
+                Re-read the case ↑
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <div>
+            <strong>STEMATHON 2026</strong>
+            <p style="margin-top:8px;">
+                A case for opportunity + responsibility.
+            </p>
+        </div>
+
+        <div>
+            <p>
+                Imperial College London STEMathon India<br>
+                Finale: Mumbai · 21–22 November 2026
+            </p>
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* ---------- SCROLL REVEALS ---------- */
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+
+        document.querySelectorAll(".reveal").forEach(el => {
+            observer.observe(el);
+        });
+
+
+        /* ---------- DAYS COUNTER ---------- */
+
+        function updateCountdown() {
+
+            const finale = new Date("September 2, 2026 20:00:00");
+            const now = new Date();
+
+            const difference = finale - now;
+
+            const days = Math.max(
+                0,
+                Math.ceil(difference / (1000 * 60 * 60 * 24))
+            );
+
+            document.getElementById("days").textContent = days;
+
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+
+        /* ---------- PARALLAX ORB ---------- */
+
+        window.addEventListener("scroll", () => {
+
+            const orb = document.querySelector(".floating-orb");
+
+            if (!orb) return;
+
+            const scroll = window.scrollY;
+
+            orb.style.transform =
+                `translateY(${scroll * 0.08}px) rotate(${scroll * 0.03}deg)`;
+
+        });
+
+
+        /* ---------- ACTIVE NAV ---------- */
+
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        window.addEventListener("scroll", () => {
+
+            let current = "";
+
+            sections.forEach(section => {
+
+                const top = section.offsetTop;
+
+                if (window.scrollY >= top - 200) {
+                    current = section.getAttribute("id");
+                }
+
+            });
+
+            navLinks.forEach(link => {
+
+                if (!link.classList.contains("nav-button")) {
+
+                    link.style.opacity =
+                        link.getAttribute("href") === "#" + current
+                            ? "1"
+                            : ".45";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
